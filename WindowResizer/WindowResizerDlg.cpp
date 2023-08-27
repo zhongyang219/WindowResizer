@@ -8,6 +8,10 @@
 #include "afxdialogex.h"
 #include "Common.h"
 
+#ifdef _WINDLL
+#include "../include/mainframeinterface.h"
+#endif
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -309,7 +313,12 @@ HCURSOR CWindowResizerDlg::OnQueryDragIcon()
 void CWindowResizerDlg::OnBnClickedFindWindowButton()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	SetTimer(TIMER_ID, 1000, NULL);
+	SetTimer(TIMER_ID, 5000, NULL);
+    GetDlgItem(IDC_FIND_WINDOW_BUTTON)->EnableWindow(FALSE);
+#ifdef _WINDLL
+    WindowResizer::Instance()->GetMainFrame()->SetItemEnable("FindWindow", false);
+#endif
+    SetDlgItemText(IDC_INFO_STATIC, _T("查找窗口按钮已按下，请在5秒内激活要查找的窗口。"));
 }
 
 
@@ -348,6 +357,12 @@ void CWindowResizerDlg::OnTimer(UINT_PTR nIDEvent)
             UpdateControlState();
 
 			KillTimer(TIMER_ID);
+
+            GetDlgItem(IDC_FIND_WINDOW_BUTTON)->EnableWindow(TRUE);
+#ifdef _WINDLL
+            WindowResizer::Instance()->GetMainFrame()->SetItemEnable("FindWindow", true);
+#endif
+            SetDlgItemText(IDC_INFO_STATIC, _T(""));
 		}
 	}
 	else if (nIDEvent == TIMER2_ID)
