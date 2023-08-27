@@ -200,6 +200,7 @@ const char* WindowResizer::GetModuleName()
 
 void WindowResizer::OnCommand(const char* strCmd, bool checked)
 {
+    AFX_MANAGE_STATE(AfxGetStaticModuleState());
     std::string cmd = strCmd;
     if (cmd == "FindWindow")
     {
