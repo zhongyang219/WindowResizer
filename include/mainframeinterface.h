@@ -77,6 +77,8 @@ public:
 
     virtual void* GetAcion(const char* strId) = 0;
     virtual void* GetWidget(const char* strId) = 0;
+
+    virtual void SetStatusBarText(const char* text, int timeOut) = 0;
 };
 
 #endif // MAINWINDOWINTERFACE

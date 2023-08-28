@@ -3,6 +3,8 @@
 
 class IMainFrame;
 
+//模块接口，所有需要被框架加载的项目都要实现此接口
+//接口中所有const char*类型均为UTF8编码。
 class IModule
 {
 public:
