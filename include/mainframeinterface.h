@@ -60,6 +60,20 @@ public:
     virtual void SetItemIcon(const char* strId, const char* iconPath, int iconSize) = 0;
 
     /**
+     * @brief       获取Ribbon标签中Combox或ListWidget当前选中项
+     * @param[in]	strId: 命令的ID
+     * @return      选中项的序号
+     */
+    virtual int GetItemCurIndex(const char* strId) = 0;
+
+    /**
+    * @brief       设置Ribbon标签中Combox或ListWidget当前选中项
+    * @param[in]   strId: 命令的ID
+    * @param[in]   index: 选中项的序号
+    */
+    virtual void SetItemCurIIndex(const char* strId, int index) = 0;
+
+    /**
      * @brief       根据模块名称获取模块对象的指针
      * @param[in]	moduleName 模块名称，由模块接口GetModuleName()返回。
      * @return      模块对象的指针

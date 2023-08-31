@@ -47,6 +47,7 @@ protected:
 	void EnableAllControls(bool enable);
     void UpdateControlState();
     void SetWindowSize(int width, int height);
+    void SetStatusText(LPCTSTR text);
 
 // 实现
 protected:

@@ -1,12 +1,19 @@
-#pragma once
+ï»¿#pragma once
+#include <string>
 
 class CCommon
 {
 public:
-    static void SetWindowAlwaysOnTop(HWND hWnd, bool top);      //ÉèÖÃ´°¿Ú×ÜÊÇÖÃ¶¥
-    static bool IsWindowAlwaysOnTop(HWND hWnd);                 //ÅĞ¶Ï´°¿ÚÊÇ·ñ×ÜÊÇÖÃ¶¥
+    static void SetWindowAlwaysOnTop(HWND hWnd, bool top);      //è®¾ç½®çª—å£æ€»æ˜¯ç½®é¡¶
+    static bool IsWindowAlwaysOnTop(HWND hWnd);                 //åˆ¤æ–­çª—å£æ˜¯å¦æ€»æ˜¯ç½®é¡¶
 
-    static void ShowWindowInTaskBar(HWND hWnd, bool show);      //ÉèÖÃ´°¿ÚÏÔÊ¾ÔÚÈÎÎñÀ¸
-    static bool IsWindowShownInTaskBar(HWND hWnd);              //ÅĞ¶Ï´°¿ÚÊÇ·ñÏÔÊ¾ÔÚÈÎÎñÀ¸
+    static void ShowWindowInTaskBar(HWND hWnd, bool show);      //è®¾ç½®çª—å£æ˜¾ç¤ºåœ¨ä»»åŠ¡æ 
+    static bool IsWindowShownInTaskBar(HWND hWnd);              //åˆ¤æ–­çª—å£æ˜¯å¦æ˜¾ç¤ºåœ¨ä»»åŠ¡æ 
+
+    //å°†const char*å­—ç¬¦ä¸²è½¬æ¢æˆå®½å­—ç¬¦å­—ç¬¦ä¸²
+    static std::wstring StrToUnicode(const char* str, bool utf8 = false);
+
+    static std::string UnicodeToStr(const wchar_t* wstr, bool utf8 = false);
+
 };
 

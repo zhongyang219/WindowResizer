@@ -189,6 +189,15 @@ void CWindowResizerDlg::SetWindowSize(int width, int height)
     }
 }
 
+void CWindowResizerDlg::SetStatusText(LPCTSTR text)
+{
+#ifdef _WINDLL
+    WindowResizer::Instance()->GetMainFrame()->SetStatusBarText(CCommon::UnicodeToStr(text, true).c_str(), 0);
+#else
+    SetDlgItemText(IDC_INFO_STATIC, text);
+#endif
+}
+
 BEGIN_MESSAGE_MAP(CWindowResizerDlg, CDialog)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
@@ -318,7 +327,7 @@ void CWindowResizerDlg::OnBnClickedFindWindowButton()
 #ifdef _WINDLL
     WindowResizer::Instance()->GetMainFrame()->SetItemEnable("FindWindow", false);
 #endif
-    SetDlgItemText(IDC_INFO_STATIC, _T("查找窗口按钮已按下，请在5秒内激活要查找的窗口。"));
+    SetStatusText(_T("查找窗口按钮已按下，请在5秒内激活要查找的窗口。"));
 }
 
 
@@ -362,7 +371,7 @@ void CWindowResizerDlg::OnTimer(UINT_PTR nIDEvent)
 #ifdef _WINDLL
             WindowResizer::Instance()->GetMainFrame()->SetItemEnable("FindWindow", true);
 #endif
-            SetDlgItemText(IDC_INFO_STATIC, _T(""));
+            SetStatusText(_T(""));
 		}
 	}
 	else if (nIDEvent == TIMER2_ID)
